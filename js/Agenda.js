@@ -97,6 +97,8 @@ export default class Agenda {
    **********************************************************************************************************/
   renderListSection() {
     const $listSection = document.createElement("div");
+    const $contactContainer = document.createElement("div");
+    $contactContainer.classList.add("contact");
 
     // Para los estilos
     $listSection.id = "list-section";
@@ -110,35 +112,38 @@ export default class Agenda {
       this.renderListSection();
     };
 
-    this.contactsData.forEach((contact) => {
-      const $contactContainer = document.createElement("div");
-      $contactContainer.classList.add("contact");
-
-      $contactContainer.innerHTML += `
-          <p>${contact.name} ${contact.surname}</p>
-          <p>${contact.address}</p>
-          <p>${contact.tel}</p>
-          <div id="button-container">
-            <button class="edit-button" title="Editar registro">✏️</button>
-            <button class="delete-button" title="Eliminar registro">🗑️</button>
-          </div>
-      `;
-
-      const $editButton = $contactContainer.querySelector(".edit-button");
-      const $deleteButton = $contactContainer.querySelector(".delete-button");
-
-      $editButton.addEventListener("click", () => {
-        this.renderEditSection(contact);
-        console.log("Editando el contacto", contact);
+    /// POR QUE NO MUESTRA EL MENSAJE SI NO HAY CONTACTOS????
+    if (!this.contactsData || this.contactsData.length === 0){
+        $listSection.innerHTML += '<p id="list-section-info">No hay ningún contacto en la agenda.</p>';
+    }
+    else {
+      this.contactsData.forEach((contact) => {
+        $contactContainer.innerHTML += `
+            <p>${contact.name} ${contact.surname}</p>
+            <p>${contact.address}</p>
+            <p>${contact.tel}</p>
+            <div id="button-container">
+              <button class="edit-button" title="Editar registro">✏️</button>
+              <button class="delete-button" title="Eliminar registro">🗑️</button>
+            </div>
+        `;
+  
+        const $editButton = $contactContainer.querySelector(".edit-button");
+        const $deleteButton = $contactContainer.querySelector(".delete-button");
+  
+        $editButton.addEventListener("click", () => {
+          this.renderEditSection(contact);
+          console.log("Editando el contacto", contact);
+        });
+  
+        $deleteButton.addEventListener("click", () => {
+          deleteContact(contact);
+          console.log("Eliminando el contacto", contact);
+        });
+  
+        $listSection.appendChild($contactContainer);
       });
-
-      $deleteButton.addEventListener("click", () => {
-        deleteContact(contact);
-        console.log("Eliminando el contacto", contact);
-      });
-
-      $listSection.appendChild($contactContainer);
-    });
+    }
 
     this.$container.innerHTML = "";
     this.$container.appendChild($listSection);

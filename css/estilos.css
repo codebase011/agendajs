@@ -125,6 +125,10 @@ main {
 
   /* Sección listar */
   #list-section {
+    #list-section-info {
+      padding: 2em;
+      text-align: center;
+    }
     .contact {
       display: grid;
       grid-template-columns: 3fr 3fr 2fr 1fr;
