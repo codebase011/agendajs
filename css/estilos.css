@@ -16,13 +16,8 @@ body {
 
 #main-container {
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
   justify-content: center;
-  /* justify-items: center; */
-  /* height: 100vh; */
   margin: 0 auto;
-  /* border: 1px solid red; */
   flex-direction: row;
   gap: 1em;
 }
@@ -51,8 +46,6 @@ h1 {
 }
 
 nav {
-  /* width: 15%; */
-  /* border: 1px solid #e0e0e0; */
   border-radius: 0.5em;
 
   ul {
@@ -60,17 +53,12 @@ nav {
     border-radius: 0.5em;
     background-color: #1a1a1a;
     box-shadow: 2px 2px 7px rgb(0, 0, 0);
-    /* border: 2px solid black; */
     background-color: #1a1a1a;
-    /* box-shadow: 0px 0px 7px rgb(0, 0, 0); */
-    /* box-shadow: 0px 0px 7px rgb(0, 0, 0); */
     border-radius: 0.5em;
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    /* width: fit-content; */
     justify-content: space-between;
-    /* gap: 1em; */
 
     li {
       text-shadow: 0px 0px 3px black;
@@ -83,12 +71,12 @@ nav {
         max-width: 16px;
       }
 
-      &:nth-of-type(1){
+      &:nth-of-type(1) {
         border-top-left-radius: 0.5em;
         border-top-right-radius: 0.5em;
       }
 
-      &:nth-of-type(4){
+      &:nth-of-type(4) {
         border-bottom-left-radius: 0.5em;
         border-bottom-right-radius: 0.5em;
       }
@@ -108,7 +96,6 @@ nav {
 }
 
 main {
-  /* margin-top: 1em; */
   border: 1px solid black;
   background-color: #1a1a1a;
   box-shadow: 2px 2px 7px rgb(0, 0, 0);
@@ -133,7 +120,6 @@ main {
   }
 
   input {
-    /* box-shadow: 0px 0px 5px black; */
     background-color: #dcc3c3;
     border-radius: 0.2em;
     border: none;
@@ -152,7 +138,6 @@ main {
       flex-direction: row;
       justify-content: space-between;
       padding: 1em;
-      /* gap: 2em; */
     }
 
     /* Para el botón */
@@ -182,6 +167,18 @@ main {
     #list-section-info {
       padding: 2em;
       text-align: center;
+    }
+
+    #no-contacts-container {
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      align-items: center;
+    }
+
+    #add-button-list {
+      width: 20%;
+      height: 3em;
     }
 
     .contact {
@@ -225,7 +222,6 @@ main {
   #edit-section {
     select {
       width: 80%;
-      /* margin: 1em; */
     }
 
     /* Para los labels y los inputs */
@@ -282,6 +278,10 @@ main {
       margin-left: 1em;
     }
 
+    input[type="checkbox"] {
+      height: auto;
+    }
+
     #checkbox-exact-search {
       width: 12px;
     }
@@ -303,9 +303,64 @@ main {
       text-align: right;
     }
 
+    label {
+      margin-top: 3em;
+    }
+
     p#info {
       padding: 2em;
       text-align: center;
     }
   }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  #main-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  nav {
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin: 0 1em;
+
+      li {
+        &:nth-of-type(1) {
+          border-top-left-radius: 0.5em;
+          border-top-right-radius: 0em;
+        }
+
+        &:nth-of-type(2) {
+          border-top-right-radius: 0.5em;
+        }
+
+        &:nth-of-type(3) {
+          border-bottom-left-radius: 0.5em;
+        }
+
+        &:nth-of-type(4) {
+          border-bottom-left-radius: 0.5em;
+          border-bottom-left-radius: 0em;
+        }
+      }
+    }
+  }
+
+  main {
+    border: 1px solid black;
+    background-color: #1a1a1a;
+    box-shadow: 2px 2px 7px rgb(0, 0, 0);
+    border-radius: 0.5em;
+    width: 92%;
+    margin: 0 1em;
+  }  
 }

@@ -111,7 +111,15 @@ export default class Agenda {
     };
 
     if (!this.contactsData || this.contactsData.length === 0){
-        $listSection.innerHTML += '<p id="list-section-info">No hay ningún contacto en la agenda.</p>';
+        $listSection.innerHTML += `
+          <div id="no-contacts-container">
+            <p id="list-section-info">No hay ningún contacto en la agenda.</p>
+            <button id="add-button-list">Añadir contacto</button>
+          </div>
+        `;
+
+        const $addButton = $listSection.querySelector('button');
+        $addButton.addEventListener('click', () => this.render(SECTIONS.ADD))
     }
     else {
       this.contactsData.forEach((contact) => {
