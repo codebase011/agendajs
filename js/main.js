@@ -15,6 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Renderizar por defecto la seccion de Añadir
-  agenda.render(SECTIONS.ADD);
+  agenda.render(SECTIONS.EDIT);
 });
 

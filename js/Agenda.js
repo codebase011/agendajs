@@ -97,8 +97,6 @@ export default class Agenda {
    **********************************************************************************************************/
   renderListSection() {
     const $listSection = document.createElement("div");
-    const $contactContainer = document.createElement("div");
-    $contactContainer.classList.add("contact");
 
     // Para los estilos
     $listSection.id = "list-section";
@@ -109,15 +107,17 @@ export default class Agenda {
     const deleteContact = (contact) => {
       this.contactsData = this.contactsData.filter((c) => c !== contact);
       localStorage.setItem(KEY_AGENDA, JSON.stringify(this.contactsData));
-      this.renderListSection();
+      this.render(SECTIONS.LIST)
     };
 
-    /// POR QUE NO MUESTRA EL MENSAJE SI NO HAY CONTACTOS????
     if (!this.contactsData || this.contactsData.length === 0){
         $listSection.innerHTML += '<p id="list-section-info">No hay ningún contacto en la agenda.</p>';
     }
     else {
       this.contactsData.forEach((contact) => {
+        const $contactContainer = document.createElement("div");
+
+        $contactContainer.classList.add("contact");
         $contactContainer.innerHTML += `
             <p>${contact.name} ${contact.surname}</p>
             <p>${contact.address}</p>
@@ -137,8 +137,8 @@ export default class Agenda {
         });
   
         $deleteButton.addEventListener("click", () => {
-          deleteContact(contact);
           console.log("Eliminando el contacto", contact);
+          deleteContact(contact);
         });
   
         $listSection.appendChild($contactContainer);
@@ -283,19 +283,19 @@ export default class Agenda {
       </div>
       <div class="fila">
         <label for="name">Nombre:</label>
-        <input type="text" id="name" value="${contact?.name || ""}">
+        <input type="text" id="name" value="${contact?.name || ""}" ${contact ? "" : "disabled"}>
       </div>
       <div class="fila">
         <label for="surname">Apellidos:</label>
-        <input type="text" id="surname" value="${contact?.surname || ""}">
+        <input type="text" id="surname" value="${contact?.surname || ""}" ${contact ? "" : "disabled"}>
       </div>
       <div class="fila">
         <label for="address">Dirección:</label>
-        <input type="tel" id="address" value="${contact?.address || ""}">
+        <input type="tel" id="address" value="${contact?.address || ""}" ${contact ? "" : "disabled"}>
       </div>
       <div class="fila">
         <label for="tel">Teléfono:</label>
-        <input type="tel" id="tel" value="${contact?.tel || ""}">
+        <input type="tel" id="tel" value="${contact?.tel || ""}" ${contact ? "" : "disabled"}>
       </div>
       <div class="fila-alinear-dcha">
         <p id="error"></p>
@@ -394,13 +394,13 @@ export default class Agenda {
       $error.textContent = "Contacto añadido correctamente";
       setTimeout(() => {
         this.render(SECTIONS.ADD)
-      }, 1000)
+      }, 500)
     }
     else {
       $error.textContent = "Contacto modificado correctamente";
       setTimeout(() => {
         this.render(SECTIONS.EDIT)
-      }, 1000)      
+      }, 500)      
     }
   }
 
