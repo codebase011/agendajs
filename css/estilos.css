@@ -91,6 +91,11 @@ nav {
         background-color: #1a1a1a;
         transition: none;
       }
+
+      &.active {
+        color: #c16060;
+        background-color: rgb(15, 14, 14);
+      }
     }
   }
 }
@@ -318,7 +323,7 @@ main {
   body {
     font-size: 14px;
   }
-  
+
   #main-container {
     display: flex;
     justify-content: center;
@@ -362,5 +367,5 @@ main {
     border-radius: 0.5em;
     width: 92%;
     margin: 0 1em;
-  }  
+  }
 }

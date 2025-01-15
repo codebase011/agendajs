@@ -8,13 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const agenda = new Agenda($mainContent);
 
   // Añadir el evento "click" de cada opción del menú
-  $lis.forEach((li) => {
-    li.addEventListener("click", () => {
-      agenda.render(li.dataset.section);
+  $lis.forEach(($li) => {
+    $li.addEventListener("click", () => {
+      agenda.render($li.dataset.section);
     });
   });
 
   // Renderizar por defecto la seccion de Añadir
   agenda.render(SECTIONS.LIST);
 });
-

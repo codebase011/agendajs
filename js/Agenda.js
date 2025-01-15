@@ -15,9 +15,16 @@ export default class Agenda {
 
   /**********************************************************************************************************
    * Renderiza la sección asociada a cada botón
-   * @param {*} section
+   * @param {*} section - Sección a renderizar
+   * @param {*} contact - Opcional para renderizar la sección "Editar"  con los datos de un contacto
    **********************************************************************************************************/
-  render(section) {
+  render(section, contact) {
+    // Según la sección que se va a renderizar, se cambia el estilo correspondiente al li 
+    const $opcionesMenu = document.querySelectorAll('nav li')
+    $opcionesMenu.forEach(li => li.classList.remove('active'))
+    Array.from($opcionesMenu).find(o => o.dataset.section === section).classList.add("active")
+
+    // Rendedizar la sección correspondiente
     switch (section) {
       case SECTIONS.ADD:
         console.log("render add section");
@@ -28,7 +35,7 @@ export default class Agenda {
         this.renderListSection();
         break;
       case SECTIONS.EDIT:
-        console.log("render edit section");
+        console.log("render edit section", contact);
         this.renderEditSection();
         break;
       case SECTIONS.SEARCH:
@@ -140,7 +147,8 @@ export default class Agenda {
         const $deleteButton = $contactContainer.querySelector(".delete-button");
   
         $editButton.addEventListener("click", () => {
-          this.renderEditSection(contact);
+          //this.renderEditSection(contact);
+          this.render(SECTIONS.EDIT, contact)
           console.log("Editando el contacto", contact);
         });
   
