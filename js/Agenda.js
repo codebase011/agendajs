@@ -36,7 +36,7 @@ export default class Agenda {
         break;
       case SECTIONS.EDIT:
         console.log("render edit section", contact);
-        this.renderEditSection();
+        this.renderEditSection(contact);
         break;
       case SECTIONS.SEARCH:
         console.log("render search section");
